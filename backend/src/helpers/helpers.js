@@ -19,7 +19,7 @@ const bcryptCompare = async (password, result, res) => {
 }
 
 const createToken = async (id) => {
-    const token = jwt.sign({ id: id }, process.env.SECRET, { expiresIn: 300 });
+    const token = jwt.sign({ id: id }, process.env.SECRET, { expiresIn: 3000 });
     return token
 }
 
