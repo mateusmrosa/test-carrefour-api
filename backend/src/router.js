@@ -6,7 +6,7 @@ const middleware = require('../src/middleware/Middleware')
 const router = express.Router()
 
 router.post('/transaction', middleware.verifyJWT, transactionController.addTransaction)
-router.get('/balanceDay', middleware.verifyJWT, transactionController.getBalance)
+router.get('/balanceDaily', middleware.verifyJWT, transactionController.getBalance)
 router.post('/authentication', authenticationController.authentication)
 
 module.exports = router

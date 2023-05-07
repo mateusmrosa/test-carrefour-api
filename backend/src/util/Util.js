@@ -5,6 +5,8 @@ const formatDate = (param) => {
     return dateFormat
 }
 
-module.exports = {
-    formatDate
+function invalidCredentials(res) {
+    return res.status(401).json({ message: 'Credenciais inválidas' });
 }
+
+module.exports = { formatDate, invalidCredentials }

@@ -1,8 +1,8 @@
 const AuthenticationEntitie = require('../entities/AuthenticationEntitie')
 const AuthenticationModel = require('../models/AuthenticationModel')
-const bcrypt = require('bcrypt');
 require('dotenv').config();
-const jwt = require('jsonwebtoken')
+const util = require('../util/Util')
+const helper = require('../helpers/helpers')
 
 
 const authentication = async (req, res) => {
@@ -10,23 +10,15 @@ const authentication = async (req, res) => {
         const { username, password } = req.body
         const authentication = new AuthenticationEntitie(username, password)
         const result = await AuthenticationModel.getData(authentication.username)
-
-        const id = result[0].id
-        const pass = authentication.password
-
-        bcrypt.compare(pass.toString(), result[0].password, (err, result) => {
-            if (err) {
-                return res.status(500).json({ message: 'Error', msg: err.message })
-            } else if (result) {
-                const token = jwt.sign({ id: id }, process.env.SECRET, { expiresIn: 3000 })
-                return res.status(200).json({
-                    auth: true,
-                    token
-                })
-            } else {
-                return res.status(401).json({ message: 'login ou senha inválidos' })
-            }
-        })
+        if (result[0] != undefined) {
+            const id = result[0].id
+            const pass = authentication.password
+            await helper.bcryptCompare(pass, result, res)
+            await helper.authenticate(authentication, result, res)
+            const token = await helper.createToken(id)
+            return res.status(200).json({ auth: true, token })
+        } else
+            return util.invalidCredentials(res);
     } catch (e) {
         console.log(e)
         return { message: "Error", Erro: e }
