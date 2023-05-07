@@ -5,7 +5,7 @@ const request = require('supertest');
 
 describe('POST /transaction', () => {
   it('should create a new transaction', async () => {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNDg3OTQxLCJleHAiOjE2ODM0OTA5NDF9.KaMqBqXwExjJW6GV408fqqWd0zpI41kShdYaxzknw6k'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNDkxMjE1LCJleHAiOjE2ODM0OTQyMTV9.ou2A2lfX_T9SLxn1UQvEeaLC0bxLlVGMIsc2iKx23gg'
 
     const data = {
       date: '2023-05-07',
@@ -41,4 +41,31 @@ describe('POST /transaction', () => {
 
     expect(response.status).toBe(400)
   })
+})
+
+describe('GET /balanceDaily', () => {
+
+  it('should get a consolidated balance sheet', async () => {
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNDg5NjgxLCJleHAiOjE2ODM0OTI2ODF9.iGy1y8kPyzf7gXPN8ACBi60dYrS8w5rAyIkSXSfWWsI'
+
+    const response = await request(app)
+      .get('/balanceDaily')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', token)
+
+    expect(response.status).toBe(200)
+  })
+
+  it('should get a consolidated balance shee with invalid token', async () => {
+    const token = 'yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNDg3OTQxLCJleHAiOjE2ODM0OTA5NDF9.KaMqBqXwExjJW6GV408fqqWd0zpI41kShdYaxzknw6k'
+
+    const response = await request(app)
+      .get('/balanceDaily')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', token)
+
+    expect(response.status).toBe(400)
+  })
+
+
 })

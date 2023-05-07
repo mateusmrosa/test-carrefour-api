@@ -29,13 +29,18 @@ const addTransaction = async (req, res) => {
 const getBalance = async (req, res) => {
     try {
         const result = await transactionModel.getBalance()
-        const dailySummary = result.map(r => ({
-            date: util.formatDate(r.date),
-            valueDebits: r.total_debits,
-            valueCredits: r.total_credits,
-            totalDaily: r.total_daily
-        }))
-        return res.status(200).json({ dailySummary })
+
+        if (result) {
+            const dailySummary = result.map(r => ({
+                date: util.formatDate(r.date),
+                valueDebits: r.total_debits,
+                valueCredits: r.total_credits,
+                totalDaily: r.total_daily
+            }))
+            return res.status(200).json({ dailySummary })
+        }
+        else
+            return res.status(404).json({ message: 'Não existe movimentação' })
     } catch (e) {
         console.error(e);
         res.status(500).json({ 'message': 'Error' });
