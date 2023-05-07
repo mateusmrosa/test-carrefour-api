@@ -9,7 +9,7 @@ const authentication = async (req, res) => {
     try {
         const { username, password } = req.body
         const authentication = new AuthenticationEntitie(username, password)
-        const result = await AuthenticationModel.getData()
+        const result = await AuthenticationModel.getData(authentication.username)
 
         const id = result[0].id
         const pass = authentication.password
