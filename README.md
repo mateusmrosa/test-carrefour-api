@@ -16,30 +16,30 @@ Desenho da arquitetura
 
 <br><br>
 
-Arquitetura em Camadas 
-Controllers 
-Database 
-Entities 
-Helpers 
-Middleware  
-Models 
-Util 
+Arquitetura em Camadas <br>
+Controllers <br>
+Database <br>
+Entities <br>
+Helpers <br>
+Middleware  <br>
+Models <br>
+Util <br>
  
-Padrões de projeto utilizados 
-Clean Code, Layers Architecture 
+Padrões de projeto utilizados <br>
+Clean Code, Layers Architecture <br><br>
 
-Tecnologias e bibliotecas utilizadas
-NodeJs v14.0
-MySql v5.7
-Docker
-Bcrypt
-Body Parser
-Dotenv
-Express
-Jsonwebtoken
-Moment
-
-Execução do projeto
+Tecnologias e bibliotecas utilizadas<br>
+NodeJs v14.0<br>
+MySql v5.7<br>
+Docker<br>
+Bcrypt<br>
+Body Parser<br>
+Dotenv<br>
+Express<br>
+Jsonwebtoken<br>
+Moment<br>
+<br><br>
+Execução do projeto<br>
 instalar o nodejs v14
 Navegar até o diretório \backend do projeto
 Executar o comando: "npm insall" - para baixar a pasta "node_modules"
@@ -50,9 +50,9 @@ Enviar no body um json com username:”adm” e passaword: 123
 Vai gerar um "token" com as informações do usuário
 Para acessar as demais rotas http://localhost:3000/transaction e http://localhost:3000/balanceDaily 
 É necessário informar esse token gerado, e colocá-lo no Headers, x-access-token e também deixa o Content-Type com o valor application/json
-
-Teste
-Foram utilizados teste unitários com as bibliotecas jest e supertest
+<br><br>
+Teste<br>
+Foram utilizados teste unitários com as bibliotecas jest e supertest<br>
 
 
  <div align="center">
