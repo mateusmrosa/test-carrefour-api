@@ -9,6 +9,13 @@ Em resumo, é uma aplicação Node.js com uma arquitetura em camadas, com as cam
 
 Desenho da arquitetura 
 
+
+<div align="center">
+ <img src="https://user-images.githubusercontent.com/41523047/236915690-6d2c2ec7-f072-4847-8e1a-112855037705.png" width="700px">
+</div>
+
+<br><br>
+
 Arquitetura em Camadas 
 Controllers 
 Database 
@@ -47,7 +54,16 @@ Para acessar as demais rotas http://localhost:3000/transaction e http://localhos
 Teste
 Foram utilizados teste unitários com as bibliotecas jest e supertest
 
-     
+
+ <div align="center">
+  <img src="https://user-images.githubusercontent.com/41523047/236917074-1807f7cd-bf89-412c-9fc3-91a083b83f74.png" width="700px">
+</div>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/41523047/236917068-cf0f023f-43b4-4411-af91-96fac85855df.png" width="700px">
+</div>
+
+
 
        
 
