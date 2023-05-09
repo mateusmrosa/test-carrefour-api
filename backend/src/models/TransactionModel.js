@@ -7,7 +7,7 @@ const insert = async (transaction) => {
             transaction.date,
             transaction.value,
             transaction.description,
-            transaction.type,
+            transaction.type
         ]);
         return result
     } catch (e) {
@@ -18,12 +18,14 @@ const insert = async (transaction) => {
 
 const getBalance = async () => {
     try {
-        const query = `SELECT date, 
-                       SUM(CASE WHEN type = 'debit' THEN value ELSE 0 END) AS total_debits,
-                       SUM(CASE WHEN type = 'credit' THEN value ELSE 0 END) AS total_credits,
-                       SUM(CASE WHEN type IN ('debit', 'credit') THEN value ELSE 0 END) AS total_daily
+        const query = `SELECT date,
+                       SUM(CASE WHEN type = 'credit' THEN value ELSE 0 END) AS credits,
+                       SUM(CASE WHEN type = 'debit'  THEN value ELSE 0 END) AS debits,
+                       SUM(CASE WHEN type = 'credit' THEN value ELSE 0 END) 
+                     - SUM(CASE WHEN type = 'debit'  THEN value ELSE 0 END) AS daily_balance
                        FROM transactions
-                       GROUP BY date`;
+                       GROUP BY date
+                       ORDER BY date ASC;`;
         const result = await connection.execute(query);
         return result[0]
     } catch (e) {
